@@ -1,6 +1,7 @@
 # tareaJavaXML-JSON_02
 
 Tarea donde grabamos y leemos ficheros XML y JSON haciendo uso de la librería JAXB.
+Este proyecto se ha realizado con el IDE Netbeans 12, el SDK Java 11 y Maven.
 
 Importante incluir las siguientes dependencias en el fichero pom.xml:
 
