@@ -1,0 +1,22 @@
+{
+   "libreria" : {
+      "libros" : {
+         "libro" : [ {
+            "titulo" : "Titulo1",
+            "autor" : "Autor1",
+            "paginas" : 1100,
+            "precio" : 11.1
+         }, {
+            "titulo" : "Titulo2",
+            "autor" : "Autor2",
+            "paginas" : 2200,
+            "precio" : 22.2
+         }, {
+            "titulo" : "Titulo3",
+            "autor" : "Autor3",
+            "paginas" : 3300,
+            "precio" : 33.3
+         } ]
+      }
+   }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libreria>
+   <libros>
+      <libro>
+         <titulo>Titulo1</titulo>
+         <autor>Autor1</autor>
+         <paginas>1100</paginas>
+         <precio>11.1</precio>
+      </libro>
+      <libro>
+         <titulo>Titulo2</titulo>
+         <autor>Autor2</autor>
+         <paginas>2200</paginas>
+         <precio>22.2</precio>
+      </libro>
+      <libro>
+         <titulo>Titulo3</titulo>
+         <autor>Autor3</autor>
+         <paginas>3300</paginas>
+         <precio>33.3</precio>
+      </libro>
+   </libros>
+</libreria>
