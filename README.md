@@ -4,7 +4,7 @@ Tarea donde grabamos y leemos ficheros XML y JSON haciendo uso de la librería J
 
 Importante incluir las siguientes dependencias en el fichero pom.xml:
 
-<dependency>
+        <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
