@@ -3,51 +3,18 @@
  *
  *  Para el correcto funcionamiento de los métodos a usar vamos a crear
  *  nuestro proyecto de tipo Java Maven con el IDE Netbeans 12 y Java 11.
- *  Añadimos al fichero pom.xml las siguientes dependencias:
- *
- * <dependency>
- * <groupId>javax.xml.bind</groupId>
- * <artifactId>jaxb-api</artifactId>
- * <version>2.3.1</version>
- * </dependency>
- *
- * <dependency>
- * <groupId>javax.activation</groupId>
- * <artifactId>activation</artifactId>
- * <version>1.1</version>
- * </dependency>
- *
- * <dependency>
- * <groupId>org.glassfish.jaxb</groupId>
- * <artifactId>jaxb-runtime</artifactId>
- * <version>2.3.3</version>
- * </dependency>
- *
- * <dependency>
- * <groupId>org.eclipse.persistence</groupId>
- * <artifactId>org.eclipse.persistence.moxy</artifactId>
- * <version>2.7.8</version>
- * </dependency>
- *
- * <dependency>
- * <groupId>javax.json</groupId>
- * <artifactId>javax.json-api</artifactId>
- * <version>1.1.4</version>
- * </dependency>
- *
- * <dependency>
- * <groupId>org.glassfish</groupId>
- * <artifactId>javax.json</artifactId>
- * <version>1.1.4</version>
- * </dependency>
+ *  Añadimos al fichero pom.xml las dependencias necesarias
  *
  */
 package com.televoip.tareaxml_02;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -99,32 +66,56 @@ public class Main implements Serializable {
         //Anadimos todos los nodos creados al nodo raiz 
         libreria.setLibro(libros);
 
-        //Imprimimos un mensaje de salida y llamamos al método grabarXML
-        System.out.println("**************************");
-        System.out.println("*  Grabando fichero XML  *");
-        System.out.println("**************************\n");
-        grabarXML(libreria); //llamamos a grabarXML pasándole el objeto fichero y el objeto principal librería
+        Scanner sc = new Scanner(System.in);
+        int valor;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("********************************************");
+        System.out.println("***    Gestión de ficheros XML & JSON    ***");
+        System.out.println("********************************************");
 
-        //Imprimimos un mensaje de salida y llamamos al método leerXML
-        System.out.println("\n**************************");
-        System.out.println("*  Leyendo fichero XML   *");
-        System.out.println("**************************\n");
-        leerXML(); //llamamos al método leerXML pasándolo el objeto fichero
+        do {
+            do {
+                System.out.println("\n1. Crear Fichero XML");
+                System.out.println("2. Crear Fichero JSON");
+                System.out.println("3. Leer Fichero XML");
+                System.out.println("4. Leer Fichero JSON");
+                System.out.println("Introduzca la opción que desee (0 para salir): ");
+                valor = sc.nextInt();
+            } while (valor < 0 || valor > 4);
 
-        //Imprimimos un mensaje de salida y llamamos al método grabarJSON
-        System.out.println("\n***************************");
-        System.out.println("*  Grabando fichero JSON  *");
-        System.out.println("***************************\n");
-        grabarJSON(libreria);
+            switch (valor) {
+                case 1:
+                    System.out.println("\nCreando el fichero XML...");
+                    grabarXML(libreria);
+                    break;
 
-        //Imprimimos un mensaje de salida y llamamos al método leerJSON
-        System.out.println("\n\n***************************");
-        System.out.println("*  Leyendo fichero JSON   *");
-        System.out.println("***************************");
-        leerJSON();
+                case 2:
+                    System.out.println("\nCreando el fichero XML con JDOM2...");
+                    grabarJSON(libreria);
+                    break;
+
+                case 3:
+                    System.out.println("\nLeyendo el fichero XML");
+                    leerXML();
+                    break;
+
+                case 4:
+                    System.out.println("\nLeyendo el fichero XML con JDOM2");
+                    leerJSON();
+                    break;
+
+                case 0:
+                    System.out.println("\nCerramos el programa");
+                    break;
+
+            }
+        } while (valor != 0);
     }
 
     private static void leerXML() {
+        System.out.println("\n**************************");
+        System.out.println("*  Leyendo fichero XML   *");
+        System.out.println("**************************\n");
         File fichero = new File("./libros.xml");  //nombre y ruta del fichero
         ArrayList<ClassLibro> librosIn;
         ClassLibreria libreriaIn = new ClassLibreria();
@@ -149,6 +140,9 @@ public class Main implements Serializable {
     }
 
     private static void leerJSON() {
+        System.out.println("\n\n***************************");
+        System.out.println("*  Leyendo fichero JSON   *");
+        System.out.println("***************************");
         File fichero = new File("./libros.json");  //nombre y ruta del fichero
         ArrayList<ClassLibro> librosIn;
         ClassLibreria libreriaIn = new ClassLibreria();
@@ -177,6 +171,9 @@ public class Main implements Serializable {
     }
 
     private static void grabarXML(ClassLibreria libreriaOut) {
+        System.out.println("**************************");
+        System.out.println("*  Grabando fichero XML  *");
+        System.out.println("**************************\n");
         File fichero = new File("./libros.xml");  //nombre y ruta del fichero
         try {
             // Creamos un JaxBContext
@@ -195,6 +192,9 @@ public class Main implements Serializable {
     }
 
     private static void grabarJSON(ClassLibreria libreriaOut) throws IOException {
+        System.out.println("\n***************************");
+        System.out.println("*  Grabando fichero JSON  *");
+        System.out.println("***************************\n");
         File file = new File("./libros.json");
         try {
             // Creamos un JaxBContext
